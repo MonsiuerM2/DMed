@@ -1,0 +1,57 @@
+<form #registerForm="ngForm" (ngSubmit)="register()" autocomplete="off">
+  <h2 class="text-center text-primary">Sign up</h2>
+  <hr />
+
+  <div class="mb-3">
+    <input
+      type="text"
+      class="form-control"
+      name="email"
+      [(ngModel)]="model.email"
+      placeholder="Email"
+      [required]="true"
+    />
+  </div>
+  <div class="mb-3">
+    <mat-checkbox [checked]="useEmailAsUN" (change)="handleData()"
+      >Use your Email as the Username</mat-checkbox
+    >
+  </div>
+  <div class="mb-3">
+    <input
+      type="text"
+      class="form-control"
+      name="username"
+      [(ngModel)]="model.username"
+      placeholder="Username"
+      [disabled]="this.useEmailAsUN"
+      [required]="true"
+    />
+  </div>
+  <div class="mb-3">
+    <input
+      type="password"
+      class="form-control"
+      name="password"
+      [(ngModel)]="model.password"
+      placeholder="Password"
+      [required]="true"
+    />
+  </div>
+  <div class="mb-3">
+    <input
+      type="password"
+      class="form-control"
+      name="confirmPassword"
+      [(ngModel)]="this.confirmPassword"
+      placeholder="Confirm Password"
+      [required]="true"
+    />
+  </div>
+  <div class="text-center">
+    <button class="btn btn-success me-2" type="submit">Register</button>
+    <button class="btn btn-default" type="button" (click)="cancel()">
+      Cancel
+    </button>
+  </div>
+</form>
