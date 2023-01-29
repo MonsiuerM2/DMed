@@ -42,7 +42,7 @@ namespace API.Services
             var client = new SendGridClient(apiKey);
             var msg = new SendGridMessage()
             {
-                From = new EmailAddress(SendGridEmailAddress, "Car Rental Service"),
+                From = new EmailAddress(SendGridEmailAddress, "DMed"),
                 Subject = subject,
                 PlainTextContent = message,
                 HtmlContent = message

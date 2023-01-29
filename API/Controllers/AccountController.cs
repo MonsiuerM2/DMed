@@ -39,7 +39,7 @@ namespace API.Controllers
 
             var user = _mapper.Map<AppUser>(registerDto);
             user.UserName = registerDto.Username.ToLower();
-            
+
             var result = await _userManager.CreateAsync(user, registerDto.Password);
             if (!result.Succeeded) return BadRequest(result.Errors);
 
@@ -136,7 +136,7 @@ namespace API.Controllers
             var user = await _userManager.Users.SingleOrDefaultAsync(x => x.UserName == emailDto.Username.ToLower());
 
             if (user == null) return Unauthorized("Please enter a valid username");
-
+            if (!user.EmailConfirmed) return BadRequest("Email is not verified");
             string passwordResetToken = await _userManager.GeneratePasswordResetTokenAsync(user);
 
             //Console.WriteLine("\n----------------------------------------\n" + passwordResetToken + "\n----------------------------------------");
